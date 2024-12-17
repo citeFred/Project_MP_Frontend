@@ -1,0 +1,63 @@
+$primary-color: #6750a4;
+$border-color: #e0e0e0;
+
+ion-content {
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --padding-top: 40px;  // 상단 여백 증가
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    
+    ion-item {
+      --padding-start: 0;
+      --padding-end: 0;
+      --min-height: auto;
+      --background: transparent;
+      --border-color: transparent;
+      margin-bottom: 32px;  // 항목 간 간격 증가
+      
+      &::part(native) {
+        padding: 0;
+      }
+      
+      ion-label {
+        --color: var(--ion-text-color);
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        
+        &[position="floating"] {
+          transform: none;
+          position: relative;
+        }
+      }
+      
+      ion-input, ion-textarea {
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --padding-top: 12px;
+        --padding-bottom: 12px;
+        border: 1px solid #{$border-color};
+        border-radius: 4px;
+        --background: white;
+        margin-top: 4px;
+        min-height: 44px;
+      }
+      
+      ion-textarea {
+        min-height: 80px;
+      }
+    }
+    
+    ion-button {
+      --background: #{$primary-color};
+      --border-radius: 4px;
+      margin-top: auto;  // 버튼을 하단으로 밀기
+      margin-bottom: 24px;
+      height: 48px;
+    }
+  }
+}

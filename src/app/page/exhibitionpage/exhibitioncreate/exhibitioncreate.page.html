@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <app-top-bar></app-top-bar>
+    </ion-title>
+  </ion-toolbar>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</ion-header>
+
+<ion-content>
+  <div class="section1">
+    <div class = "section1content">
+      <div class="title">프로젝트 <span class="titledetail">생성</span></div>
+      <br>
+      <div class="content">여러분의 <span class="contentdetail">혁신적인 메타버스 프로젝트</span>를 세상에 선보일 수 있는 특별한 공간을 만드는 곳입니다.
+        <br> 여러분의 창의성과 기술력이 빛날 수 있도록, 이곳에서 <span class="contentdetail">자신만의 독특한 프로젝트를 생성해 보세요.</span></div>
+    </div>
+  </div>
+
+  <div class="maincontent shadow-box">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="exhibition_title" class="align-label"><i class="material-icons">assignment</i> 프로젝트 이름:</label>
+        <input type="text" id="exhibition_title" [(ngModel)]="exhibition_title" name="exhibition_title" required />
+      </div>
+
+      <div class="form-group">
+        <label for="exhibition_generation" class="align-label"><i class="material-icons">group</i>기수:</label>
+        <input type="text" id="exhibition_generation" [(ngModel)]="exhibitionGeneration" name="exhibition_generation" required />
+      </div>
+
+      <div class="form-group">
+        <label for="team_name" class="align-label"><i class="material-icons">people</i>팀 이름:</label>
+        <input type="text" id="team_name" [(ngModel)]="team_name" name="team_name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="description" class="align-label"><i class="material-icons">school</i>교육과정:</label>
+        <input type="text" id="description" [(ngModel)]="description" name="description" required />
+      </div>
+
+      <div class="form-group">
+      <label for="thumbnail" class="align-label"><i class="material-icons">image</i>썸네일 (이미지파일, 규격 1920x1080):</label>
+      <input type="file" id="thumbnail" (change)="onFileChange($event)" accept="image/*" required />
+      <div *ngIf="thumbnailPreview" class="thumbnail-preview">
+        <img [src]="thumbnailPreview" alt="Thumbnail Preview" style="width: 100%; max-width: 300px; margin-top: 10px;" />
+      </div>
+    </div>
+
+
+      <div class="form-group">
+        <label for="introduce" class="align-label"><i class="material-icons">first_page</i>Introduce (1~5 문장):</label>
+        <textarea id="introduce" [(ngModel)]="introduce" name="introduce" required></textarea>
+        <button type="button" (click)="addIntroduce()">추가</button>
+      </div>
+
+      <div *ngFor="let intro of introductions; let i = index">
+        <p>{{ intro }} <button type="button" (click)="removeIntroduce(i)">삭제</button></p>
+      </div>
+
+      <div class="form-group">
+        <label for="memberName" class="align-label">Member 이름:</label>
+        <input type="text" id="memberName" [(ngModel)]="memberName" name="memberName" required />
+        <label for="memberImage" class="align-label">Member 사진:</label>
+        <input type="file" id="memberImage" (change)="onMemberImageChange($event)" accept="image/*" required />
+        <button type="button" (click)="addMember()">추가</button>
+      </div>
+
+      <div *ngFor="let member of members; let j = index">
+        <p>{{ member.name }}
+          <img [src]="member.image" alt="{{ member.name }}" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 10px;" />
+          <button type="button" (click)="removeMember(j)">삭제</button>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="outputImages" class="align-label"><i class="material-icons">image</i>Output에서 사용할 사진:</label>
+        <input type="file" id="outputImages" (change)="onOutputImageChange($event)" accept="image/*" required />
+        <button type="button" (click)="addOutputImage()">추가</button>
+      </div>
+
+
+      <div *ngFor="let image of outputImagesList; let k = index">
+        <p>
+          <img [src]="image" alt="Output Image" style="max-width:1920px; max-height: 1080px; margin-right: 10px;" />
+          <button type="button" (click)="removeOutputImage(k)">삭제</button>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="outputVideo" class="align-label"><i class="material-icons">movie</i>Output에서 사용할 영상:</label>
+        <input type="file" id="outputVideo" (change)="onOutputVideoChange($event)" accept="video/*" required />
+        <div *ngIf="outputVideoPreview" class="video-preview">
+          <video [src]="outputVideoPreview" controls style="width: 100%; max-width: 1920px; margin-top: 10px;"></video>
+        </div>
+        <button type="submit" class="submit"><span class="submittext">제출</span></button>
+      </div>
+    </form>
+  </div>
+</ion-content>

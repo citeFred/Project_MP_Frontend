@@ -1,0 +1,98 @@
+<ion-content>
+  <!-- Main container -->
+  <div class="video-container">
+    <!-- Logo -->
+    <div class="icon-location">
+      <img src="../../../assets/svg/HIP-Logo.svg" id="logo" alt="Logo">
+    </div>
+
+    <!-- Loading indicator -->
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+    
+    <!-- Error message -->
+    <ion-text color="danger" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </ion-text>
+
+    <!-- Video section -->
+    <div class="video-wrapper" *ngIf="videoUrl && !isLoading">
+      <!-- Summary toggle button - 위치 고정 -->
+      <div class="summary-toggle" [class.active]="showSummary">
+        <ion-button (click)="handleToggleAndSummary()" fill="clear">
+          <ion-icon [name]="showSummary ? 'chevron-back' : 'chevron-forward'"></ion-icon>
+          <span *ngIf="!showSummary">Summary</span>
+        </ion-button>
+      </div>
+    
+      <!-- Summary side panel - showSummary로 표시 제어 -->
+      <div class="summary-panel" [class.show]="showSummary">
+        <div class="summary-content">
+          <h2>Video Summary</h2>
+          <div class="summary-text">
+            {{ videoSummary }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Video player -->
+      <video
+        #videoPlayer
+        class="video-player"
+        [src]="videoUrl"
+        controlsList="nodownload"
+        (play)="onPlay()"
+        (pause)="onPause()"
+        preload="auto"
+      >
+        <track kind="captions">
+      </video>
+
+      <!-- Video controls -->
+      <ion-card>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="ion-align-items-center">
+              <!-- Play/Pause button -->
+              <ion-col size="2">
+                <ion-button fill="clear" (click)="togglePlay()">
+                  <ion-icon [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+                </ion-button>
+              </ion-col>
+
+              <!-- Volume control -->
+              <ion-col size="4">
+                <ion-button fill="clear" (click)="toggleMute()">
+                  <ion-icon [name]="isMuted ? 'volume-mute' : 'volume-high'"></ion-icon>
+                </ion-button>
+                <ion-range
+                  [(ngModel)]="volume"
+                  (ionChange)="onVolumeChange($event)"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  class="volume-slider"
+                ></ion-range>
+              </ion-col>
+
+              <!-- Quality selection -->
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>화질</ion-label>
+                  <ion-select
+                    interface="popover"
+                    (ionChange)="changeQuality($event)"
+                    value="1080"
+                  >
+                    <ion-select-option value="1080">1080p</ion-select-option>
+                    <ion-select-option value="720">720p</ion-select-option>
+                    <ion-select-option value="480">480p</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

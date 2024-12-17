@@ -1,0 +1,45 @@
+
+
+
+ion-card {
+  aspect-ratio: 15 / 14 !important;
+  overflow: hidden;   // 내용이 카드 크기를 넘지 않도록 설정
+  border-radius: 5px;
+  box-shadow: none; /* 기본 그림자 제거 */
+
+
+}
+
+ion-card-header {
+  overflow: hidden;   // 넘치는 내용 숨기기
+  text-overflow: ellipsis; // 넘치는 내용 생략 기호로 표시
+  text-align: left; // 왼쪽 정렬 추가
+}
+
+ion-card-title {
+  font-size: 1.6em;   // 제목 글씨 크기 조정
+  overflow: hidden;
+  font-family: 'pretendard-B', serif;
+}
+
+ion-card-subtitle {
+  font-size: 1.0em;     // 부제목 글씨 크기 조정
+  overflow: hidden;
+  text-overflow: ellipsis; // 넘치는 부제목 생략 기호로 표시
+  font-family: 'pretendard-B', serif;
+}
+
+ion-card-content {
+  text-align: left;   // 내용 정렬
+  overflow: hidden;   // 넘치는 내용 숨기기
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; // 최대 3줄까지만 표시
+  height: 60px;       // 내용 높이 제한 (필요에 따라 조정)
+}
+
+img{
+  border-radius: 5px;
+  width: 100%;
+  aspect-ratio: 16 / 9 !important;
+}

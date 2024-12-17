@@ -1,0 +1,287 @@
+:host {
+    --video-background: #0f0f1a;
+    --control-bar-bg: rgba(0, 0, 0, 0.5);
+    --progress-bar-color: #7b68ee;
+    --control-icon-color: #fff;
+  }
+  
+  // 스크롤바 제거
+  ion-content::part(scroll) {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .icon-location {
+    position: absolute;
+    top: 20px; // 상단에서의 거리
+    left: 20px; // 왼쪽에서의 거리
+    z-index: 1000; // 다른 요소들 위에 표시되도록 z-index 설정
+    
+    #logo {
+      width: auto; // 로고의 원래 비율 유지
+      height: 55px; // 로고의 높이 설정
+      display: block;
+    }
+  }
+  
+  .video-container {
+    background-color: var(--video-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 56px); // 헤더 높이 제외
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--video-background);
+  }
+  
+  .video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--video-background);
+  }
+  
+  // 커스텀 컨트롤 스타일
+  ion-card {
+    margin: 0;
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    background: var(--control-bar-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 0;
+    width: 100%;
+    z-index: 1000;
+    
+    ion-card-content {
+      padding: 8px 16px;
+    }
+  
+    ion-grid {
+      padding: 0;
+      margin: 0;
+    }
+  
+    ion-row {
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+  
+    ion-col {
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  // 볼륨 컨트롤 스타일링
+  .volume-slider {
+    --bar-height: 4px;
+    --bar-background: rgba(255, 255, 255, 0.3);
+    --bar-background-active: var(--progress-bar-color);
+    --knob-background: white;
+    --knob-size: 12px;
+    max-width: 100px;
+    margin: 0 8px;
+  
+    &::part(track) {
+      background: var(--bar-background);
+    }
+  
+    &::part(bar) {
+      background: var(--bar-background-active);
+    }
+  
+    &::part(knob) {
+      background: var(--knob-background);
+      width: var(--knob-size);
+      height: var(--knob-size);
+    }
+  }
+  
+  // 컨트롤 버튼 스타일링
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --color: var(--control-icon-color);
+    height: 36px;
+    margin: 0;
+    
+    ion-icon {
+      font-size: 24px;
+    }
+  
+    &:hover {
+      --color: var(--progress-bar-color);
+    }
+  }
+  
+  // 화질 선택 드롭다운 스타일링
+  ion-item {
+    --background: transparent;
+    --color: var(--control-icon-color);
+    --min-height: 40px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+    width: 100%; // 전체 너비 사용
+    
+    ion-select {
+      --placeholder-color: var(--control-icon-color);
+      --placeholder-opacity: 1;
+      min-width: 80px; // 최소 너비 증가
+      max-width: 100px; // 최대 너비 증가
+    }
+  }
+  
+  // 로딩 스피너 스타일
+  ion-spinner {
+    --color: var(--progress-bar-color);
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  // 에러 메시지 스타일
+  .error-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ff4961;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  // 반응형 디자인
+  @media (max-width: 768px) {
+    ion-card ion-grid {
+      ion-col {
+        &:nth-child(1) {
+          width: 40px;
+          order: 1;
+        }
+        
+        &:nth-child(2) {
+          width: auto;
+          order: 2;
+        }
+        
+        &:nth-child(3) {
+          width: 140px; // 모바일에서의 너비 증가
+          order: 3;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    ion-card ion-grid {
+      ion-col:nth-child(3) {
+        width: 100px; // 작은 화면에서의 너비 조정
+      }
+    }
+    
+    ion-select {
+      min-width: 80px !important;
+    }
+  }
+  
+  // 컨트롤 페이드 인/아웃
+  ion-card {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .video-wrapper:hover ion-card {
+    opacity: 1;
+  }
+  
+  // 제스처 영역 최적화
+  .video-wrapper {
+    touch-action: none;
+    user-select: none;
+  }
+
+
+  .summary-toggle {
+    position: fixed;
+    left: 0;
+    top: 10%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    transition: left 0.3s ease;
+  
+    &.active {
+      left: 300px;
+    }
+  
+    ion-button {
+      --background: rgba(123, 104, 238, 0.9);
+      --color: #ffffff;
+      height: 40px;
+      
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+  }
+  
+  .summary-panel {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  
+    &.show {
+      left: 0;
+    }
+  
+    .summary-content {
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      
+      h2 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+  
+      .summary-text {
+        flex: 1;
+        overflow-y: auto;
+        color: white;
+        font-size: 14px;
+        line-height: 1.6;
+        background: rgba(157, 140, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        white-space: pre-wrap;
+      }
+    }
+  }

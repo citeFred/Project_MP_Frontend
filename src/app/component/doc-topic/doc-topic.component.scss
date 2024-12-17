@@ -1,0 +1,110 @@
+.course-doc-inner .folder-container{
+
+
+}
+
+.folder-container-inner{
+  flex-direction: row;
+  display: flex;
+  gap:30px;
+  margin: 10px 0;
+  flex-wrap:wrap;
+}
+
+
+/*예시 미리보기*/
+.input-box {
+  margin-top: 10px;
+}
+
+.created-course {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+
+.folder-one{
+  display: flex;
+  flex-direction: column;
+  cursor:pointer;
+}
+
+.folder-add{
+
+}
+
+.folder-icon{
+  border: 1px solid #DEDEDE;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0px 1px 4px 2px #DEDEDE;
+}
+
+.folder {
+  background-color: #ffffff;
+  width: 185px;
+  height: 142px;
+  display: flex;
+  justify-content: center;
+}
+
+.folder-add {
+  border: 1.5px dotted #DEDEDE;
+  border-radius: 20px;
+}
+
+.folder-icon ion-icon{
+  color:#E3B6B6;
+  width: 50px;
+  height: 50px;
+
+}
+
+.folder-one .folder-title{
+  display: flex;
+  margin: 10px 0 0 0;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+
+.folder-one > *{
+  color:#4C4C4C;
+
+}
+
+.folder-one .folder-title .doc-txt{
+  font-size:20px;
+  font-family: pretendard-B,sans-serif;
+  color:#4C4C4C;
+}
+
+.folder-one .folder-title .ellipsis-icon{
+  cursor: pointer;
+}
+
+
+
+/*하위폴더 명*/
+
+.folder-header{
+  display: flex;
+  background-color: #F8F8FE;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid #D0D0FF;
+  margin: 10px 0;
+  padding: 16px 34px;
+  gap: 10px;
+}
+
+.folder-header .currentFolder-Name{
+  font-family: pretendard-B,sans-serif;
+  font-size:24px;
+}

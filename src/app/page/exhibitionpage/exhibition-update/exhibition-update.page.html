@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/exhibition-details/{{exhibitionId}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>전시 정보 수정</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="exhibitionForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">프로젝트 이름</ion-label>
+      <ion-input formControlName="projectName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">팀 이름</ion-label>
+      <ion-input formControlName="teamName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">기수</ion-label>
+      <ion-input formControlName="className" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">썸네일</ion-label>
+      <ion-input type="file" (change)="onFileChange($event, 'thumbnail')"></ion-input>
+    </ion-item>
+
+    <ion-item-divider>소개</ion-item-divider>
+    <ion-item>
+      <ion-label position="floating">소개 내용</ion-label>
+      <ion-textarea formControlName="introContent" rows="6"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">소개 이미지</ion-label>
+      <ion-input type="file" (change)="onFileChange($event, 'introImage')"></ion-input>
+    </ion-item>
+
+    <ion-item-divider>팀원</ion-item-divider>
+    <ion-item *ngFor="let member of memberForms.controls; let i = index">
+      <ion-label position="floating">팀원 {{i + 1}} 이름</ion-label>
+      <ion-input [formControlName]="i"></ion-input>
+    </ion-item>
+    <ion-button (click)="addMember()">팀원 추가</ion-button>
+
+    <ion-item-divider>출력물</ion-item-divider>
+    <ion-item>
+      <ion-label position="floating">출력물 이미지</ion-label>
+      <ion-input type="file" (change)="onFileChange($event, 'outputImage')" multiple></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">출력물 영상</ion-label>
+      <ion-input type="file" (change)="onFileChange($event, 'outputVideo')"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="!exhibitionForm.valid">수정 완료</ion-button>
+  </form>
+</ion-content>

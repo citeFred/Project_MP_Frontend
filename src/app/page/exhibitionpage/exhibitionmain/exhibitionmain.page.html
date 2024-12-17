@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <app-top-bar></app-top-bar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="searchbox">
+    <div class="searchcontent">
+      <div class="searchmessage"><span class="output">프로젝트</span>를 검색해보세요.</div>
+      <div class="searchcomponent">
+        <ion-searchbar
+          class="searchbar"
+          search-icon="none"
+          placeholder="검색하기"
+          [(ngModel)]="searchTerm"
+          (keydown.enter)="onSearchKeyPress($event)">
+        </ion-searchbar>
+        <ion-button class="searchbarbtn" color="primary" (click)="onSearchInput()">
+          검색
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="maincontent shadow-box">
+    <div class="section section1">
+      <div class="classycontent">
+        <ion-icon name="search"></ion-icon> 프로젝트 탐색
+        <div class="clssfy">
+          <span class="currycu">교육과정</span>
+          <span class="reset" (click)="resetFilters()">초기화<ion-icon name="reload-outline" class="reseticon"></ion-icon></span>
+          <div class="classnamebox">
+            <div class="classname">
+              <ion-checkbox class="custom-checkbox" [(ngModel)]="selectedGeneration1" (ionChange)="filterExhibitions()" labelPlacement="end">1기</ion-checkbox>
+            </div>
+            <div class="classname">
+              <ion-checkbox class="custom-checkbox" [(ngModel)]="selectedGeneration2" (ionChange)="filterExhibitions()" labelPlacement="end">2기</ion-checkbox>
+            </div>
+            <div class="classname">
+              <ion-checkbox class="custom-checkbox" [(ngModel)]="selectedGeneration3" (ionChange)="filterExhibitions()" labelPlacement="end">3기</ion-checkbox>
+            </div>
+          </div>
+        </div>
+        <ion-button class="create-exhibition" color="primary" (click)="navigateToExhibitionCreate()">
+          새로운 전시 생성
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="section2">
+      <ion-grid>
+        <ion-row class="grid">
+          <ion-col size="12" size-md="6" size-lg="3" *ngFor="let exhibition of filteredExhibitions">
+            <ion-card class="app-card" (click)="navigateToExhibition(exhibition.exhibition_id)">
+              <img *ngIf="imageUrls[exhibition.exhibition_id]; else loading"
+                   [src]="imageUrls[exhibition.exhibition_id]"
+                   alt="{{ exhibition.exhibition_title }} 이미지"
+                   class="card-image"/>
+              <ng-template #loading>
+                <ion-spinner></ion-spinner> <!-- 로딩 스피너 -->
+              </ng-template>
+              <ion-card-header>
+                <ion-card-title class="card-title">{{ exhibition.exhibition_title }}</ion-card-title>
+                <div class="subtitle-container">
+                  <ion-card-subtitle class="card-subtitle">{{ exhibition.team_name }}</ion-card-subtitle>
+                  <span class="card-description">
+                    <ion-badge [color]="getBadgeColor(exhibition.description)">
+                      {{ exhibition.description }}
+                    </ion-badge>
+                  </span>
+                </div>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="navigateToExhibitionCreate()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+      <!-- 정렬 기능 -->
+      <ion-accordion-group class="sortgroup">
+        <ion-accordion class="sorthead" [value]="isOpen ? 'first' : ''">
+          <ion-item slot="header" class="custom">
+            <ion-label>{{ accordionTitle }}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-button expand="full" (click)="changeTitle('최신순')">최신순</ion-button>
+          </div>
+          <div class="ion-padding" slot="content">
+            <ion-button expand="full" (click)="changeTitle('오래된순')">오래된순</ion-button>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </div>
+</ion-content>

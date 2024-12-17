@@ -1,0 +1,139 @@
+
+
+.section1 {
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(213deg, #FDF2FF 0%, #E9F1FF 100%);
+}
+
+.section1 .section1content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수평 중앙 정렬 */
+  justify-content: center; /* 수직 중앙 정렬 */
+  height: 100%; /* 부모 요소의 높이를 차지하게 */
+  margin: auto;
+}
+
+.section1 .section1content .title {
+  font-size: 40px;
+  font-family: 'pretendard-B', serif;
+  align-self: flex-start;
+  color : #545454;
+}
+
+.section1 .section1content .title .titledetail {
+  font-family: 'pretendard-B', serif;
+  color: #7269EE;
+}
+
+.section1 .section1content .content{
+  font-size: 17px;
+  font-family: 'pretendard-B', serif;
+  align-self: flex-start;
+  color : #545454;
+}
+
+.section1 .section1content .content .contentdetail{
+  font-family: 'pretendard-B', serif;
+  color: #7269EE;
+}
+
+.maincontent {
+  height: 100vh; /* 전체 높이를 사용 */
+  margin-top: -50px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+}
+.shadow-box {
+  padding: 20px;
+  background-color: white;
+  position: relative;
+  border-top: 2px solid transparent;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.maincontent .form-group {
+  margin-bottom: 16px;
+}
+
+.maincontent .form-group .align-label {
+  display: flex;
+  align-items: center;
+}
+
+.maincontent .form-group .align-label i {
+  margin-right: 5px;
+}
+.maincontent .form-group label {
+  font-size: 20px;
+  font-family: 'pretendard-B', serif;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical; /* 수직 방향으로만 크기 조절 가능 */
+}
+
+button {
+  background-color: #6f5de3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* 버튼 호버 시 색상 변경 */
+}
+
+.introductions, .members {
+  margin-top: 20px;
+}
+
+.form-group{
+  max-width: 899px;
+  margin: auto;
+}
+
+.introductions p, .members p {
+  background-color: #e9ecef;
+  border-left: 4px solid #007bff;
+  padding: 10px;
+  border-radius: 4px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.submit{
+  text-align: end;
+  background-color: #5e70fa;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  margin: auto;
+}
+
+.submittext{
+  margin: auto ;
+}
+
+
+.ng-invalid{
+  width: 899px;
+  margin: auto;
+}

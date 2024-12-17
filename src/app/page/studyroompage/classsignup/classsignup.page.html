@@ -1,0 +1,72 @@
+<ion-content>
+  <div class="layout">
+    <app-sidemenu class="sidemenu"></app-sidemenu>
+    <div class="content-wrapper">
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <!-- <ion-title>클래스 신청</ion-title> -->
+          <div class="generation-selector">
+            <ion-label>세대 선택:</ion-label>
+            <ion-select [(ngModel)]="selectedGeneration" (ionChange)="onGenerationChange()">
+              <ion-select-option *ngFor="let gen of generations" [value]="gen">{{gen}}</ion-select-option>
+            </ion-select>
+          </div>
+        </ion-toolbar>
+      </ion-header>
+      <div class="main-container">
+        <div>
+          <div class="project-search">
+            <ion-icon size="large" name="search-outline"></ion-icon>
+            <h2 class="project-title">클래스 탐색</h2>
+          </div>
+
+          <div class="class-create">
+            <h6>아직 클래스에 소속되어있지 않아요! 클래스를 만들거나 조회해 보세요</h6>
+            <ion-button class="create-btn" size="small" fill="outline" (click)="createCourse()">생성하기</ion-button>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="project-box" *ngFor="let course of courses; let i = index">
+          <ion-grid class="class1">
+            <ion-row>
+              <ion-col>{{ i + 1 }}</ion-col>
+              <ion-col size="2">{{ course.instructor_name }}</ion-col>
+              <ion-col size="8" class="class-title">
+                <ion-col class="col">{{ course.course_title }}</ion-col>
+                <br />
+                <ion-col class="class-team">{{ course.description }}</ion-col>
+              </ion-col>
+              <ion-col class="join-btn" (click)="!isRegistered(course.course_id) ? joinCourse(course.course_id) : null">
+                {{ isRegistered(course.course_id) ? '취소하기' : '신청하기' }}
+              </ion-col>
+              <ion-icon class="delete-icon" name="trash" (click)="deleteCourse(course.course_id)"></ion-icon>
+              <ion-icon class="update-icon" name="heart" (click)="updateCourse(course)"></ion-icon>
+            </ion-row>
+          </ion-grid>
+
+          <!-- 해당 강의를 신청한 유저 조회 -->
+          <!-- <div class="applicants-box">
+            <div *ngIf="getApplicantsForCourse(course.course_id).length === 0">
+              이 강의에 신청한 유저가 없습니다.
+            </div>
+            <div class="project-box" *ngFor="let courseUser of getApplicantsForCourse(course.course_id)">
+              <ion-grid class="class1">
+                <ion-row>
+                  <ion-col>{{ courseUser.course_reporting_date }}</ion-col>
+                  <ion-col>{{ courseUser.applicant.user_name }}</ion-col>
+                  <ion-col>{{ courseUser.applicant.id }}</ion-col>
+                  <ion-col>
+                    <ion-button class="accept" (click)="acceptApplicant(courseUser)">수락</ion-button>
+                    <ion-button class="reject" (click)="rejectApplicant(courseUser)">거절</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

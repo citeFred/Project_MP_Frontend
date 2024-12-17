@@ -1,0 +1,13 @@
+<section class="BG-color">
+  <div class="box-title" *ngFor="let course of courses; let i = index">
+    <div class="top" style="flex-direction: row; margin: 10px">
+      <ion-icon name="pencil-sharp" (click)="openUpdateModal(course)"></ion-icon>
+    </div>
+    <span class="lecture-title">{{course.course_title}}</span>
+    <div class="instructor-icon">
+      <img src="assets/svg/instructor-icon.svg"/>
+      <span class="lecture-spot">{{course.instructor_name}}</span>
+    </div>
+    <h6>{{course.description}}</h6>
+  </div>
+</section>

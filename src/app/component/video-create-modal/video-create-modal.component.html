@@ -1,0 +1,48 @@
+<!-- video-create-modal.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>비디오 업로드</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="video-upload">
+
+    <ion-item>
+      <ion-label position="stacked">비디오 제목</ion-label>
+      <ion-input 
+        type="text" 
+        [(ngModel)]="videoTitle"
+        placeholder="비디오 제목을 입력하세요">
+      </ion-input>
+    </ion-item>
+
+    <!-- 파일 선택 -->
+    <ion-item>
+      <ion-label position="stacked">비디오 파일</ion-label>
+      <input type="file" (change)="onFileSelected($event)" accept="video/*" />
+    </ion-item>
+
+    <!-- 업로드 버튼 -->
+    <ion-button expand="block" (click)="onUpload()" [disabled]="!selectedFile">
+      업로드
+    </ion-button>
+    <div><p>16:9의 화면 비율을 가진 영상을 업로드해주세요!</p></div>
+  </div>
+
+  <div class="video-list">
+    <ion-list>
+      <ion-item *ngIf="video">
+        <ion-label>
+          <h2>파일명: {{ video.file.name }}</h2>
+          <p>크기: {{ video.file.size | number }} bytes</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

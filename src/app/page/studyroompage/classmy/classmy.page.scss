@@ -1,0 +1,273 @@
+// 기본 레이아웃
+.sidemenu {
+    display: block;
+    min-width: 250px;
+    max-width: 400px;
+    width: 20vw;
+  }
+  
+  .layout {
+    display: flex;
+    height: 100%;
+  }
+  
+  ion-content {
+    .content-wrapper {
+      width: 100%;
+    }
+  }
+  
+  // 강의 페이지 레이아웃
+  .lecture-page {
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    > * {
+      width: 70%;
+    }
+  
+    .detail-menu {
+      display: flex;
+      font-size: 25px;
+      margin: 40px 0 0 0;
+      font-family: 'pretendard-B', serif;
+      font-weight: bold;
+    }
+  
+    #lecture-menu {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      gap: 20px;
+      padding-left: 0;
+      margin: 10px 0;
+  
+      > li {
+        cursor: pointer;
+        transition: color 0.3s;
+        font-size: 18px;
+        font-family: pretendard-B, sans-serif;
+  
+        &.active {
+          color: blue;
+          font-family: pretendard-B, serif;
+        }
+  
+        &:not(.active) {
+          color: gray;
+        }
+      }
+    }
+  
+    hr {
+      margin: 0;
+      height: 10px;
+      border-top: 1px solid #878787;
+      width: 100% !important;
+    }
+  }
+  
+  // 활성 섹션 스타일
+  .active-section {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  
+    > * {
+      width: 100%;
+    }
+  
+    .lecture-entire-inner {
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .lecture-inner {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      flex-direction: column;
+  
+      .VideoTopics-length {
+        margin: 10px 0;
+        font-family: 'pretendard-B', sans-serif;
+      }
+  
+      .lecture-title-icon {
+        display: flex;
+        align-items: center;
+  
+        img {
+          width: 35px;
+        }
+      }
+  
+      .lecture-title-des {
+        font-family: 'pretendard-B', sans-serif;
+        color: #5A5A5A;
+      }
+    }
+  }
+  
+  // 강의 아이템 리스트
+  .lecture-item-list {
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  
+    .lecture-item-entire {
+      width: 100%;
+      position: relative;
+  
+      .create-btn {
+        display: flex;
+        position: absolute;
+        top: 25px;
+        left: -30px;
+        font-size: 20px;
+        border: 2px solid;
+        border-radius: 4px;
+        padding-bottom: 2px;
+        width: 21px;
+        justify-content: center;
+        line-height: 16px;
+        opacity: 0;
+        align-items: center;
+        color: #BCBCBC;
+        transition: opacity 0.2s ease;
+        cursor: pointer;
+  
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  
+    .lecture-item {
+      display: flex;
+      flex-direction: row;
+      background: #f4f6ff;
+      border: 1px solid #d5ddff;
+      border-radius: 10px;
+      width: 100%;
+      padding: 25px;
+      gap: 20px;
+      justify-content: space-between;
+  
+      &.lecture-item-add {
+        background-color: #f6f3ff !important;
+        border: 1px solid #7d31ff !important;
+        padding: 18px 25px !important;
+      }
+  
+      .lecture-menu {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+  
+        .video-upload {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 4px 10px;
+          border: 1px solid #757575;
+          color: #757575;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      }
+  
+      .lecture-order-name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+  
+        .lecture-order {
+          background-color: #535353;
+          color: white;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+  
+  // 비디오 리스트 스타일
+  .video-list {
+    list-style: none;
+    padding: 10px 0 0 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  
+    .video-item {
+      padding: 8px 0;
+      width: 100%;
+      cursor: default; // 기본 커서로 변경하여 클릭 불가능해 보이게 함
+  
+      .video-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        min-height: 19.26px;
+        padding: 8px 12px;
+        background: transparent;
+  
+        .play-content {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex: 1;
+          cursor: pointer; // 이 영역만 클릭 가능하도록 표시
+          padding: 4px 8px;
+          border-radius: 4px;
+          transition: background-color 0.2s ease;
+  
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05); // 호버 효과로 클릭 가능한 영역 표시
+          }
+  
+          // 제목 텍스트에 대한 스타일
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+  
+        .star-icon {
+          cursor: pointer;
+          padding: 4px 8px;
+          border-radius: 4px;
+          margin-left: 8px;
+          transition: background-color 0.2s ease;
+  
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+  
+          .video-icon {
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+  // 기타 유틸리티 클래스
+  .input-box {
+    margin-top: 10px;
+  }
+  
+  .created-course {
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

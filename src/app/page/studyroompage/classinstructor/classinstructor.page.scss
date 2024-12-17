@@ -1,0 +1,104 @@
+// 변수 정의
+$primary-color: #6750a4;
+$secondary-color: #625b71;
+$background-color: #f5f5f5;
+$text-color: #1c1b1f;
+$border-radius: 12px;
+$padding-base: 16px;
+
+ion-header {
+  ion-toolbar {
+    --background: white;
+    --color: #{$text-color};
+    
+    ion-title {
+      font-size: 20px;
+      font-weight: 600;
+      padding: $padding-base;
+    }
+  }
+}
+
+ion-content {
+  --background: #{$background-color};
+  
+  ion-list {
+    background: transparent;
+    padding: $padding-base;
+    
+    ion-item {
+      --background: white;
+      --padding-start: #{$padding-base};
+      --padding-end: #{$padding-base};
+      --padding-top: #{$padding-base};
+      --padding-bottom: #{$padding-base};
+      margin-bottom: 12px;
+      border-radius: $border-radius;
+      --border-radius: #{$border-radius};
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      
+      &::part(native) {
+        border-radius: $border-radius;
+      }
+      
+      ion-label {
+        h2 {
+          font-size: 18px;
+          font-weight: 600;
+          color: $text-color;
+          margin-bottom: 8px;
+        }
+        
+        p {
+          color: $secondary-color;
+          font-size: 14px;
+          margin: 4px 0;
+          
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+      
+      ion-button {
+        --background: #{$primary-color};
+        --border-radius: 20px;
+        --padding-start: 24px;
+        --padding-end: 24px;
+        height: 36px;
+        font-size: 14px;
+        font-weight: 500;
+        
+        &::part(native) {
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+  
+  ion-text {
+    display: block;
+    padding: $padding-base * 2;
+    text-align: center;
+    color: $secondary-color;
+    
+    p {
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+}
+
+// iOS 스타일 조정
+.ios {
+  ion-header ion-toolbar {
+    --border-width: 0;
+  }
+}
+
+// Android 스타일 조정
+.md {
+  ion-item {
+    --ripple-color: transparent;
+  }
+}

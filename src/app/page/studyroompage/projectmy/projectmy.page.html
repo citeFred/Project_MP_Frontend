@@ -1,0 +1,102 @@
+<ion-content>
+  <div class="layout">
+    <app-sidemenu class="sidemenu"></app-sidemenu>
+    <div class="content-wrapper">
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <ion-title>내 프로젝트</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <div class="project-inner">
+        <div class="project-title">
+          <img class="project-title-img" src="../../../../resourses/img/project/projectmy.svg"/>
+
+          <!-- 뒤로가기 버튼 -->
+          <div *ngIf="isInSubfolder()" class="back-button" (click)="goBackToFolders()">
+            <img src="assets/svg/arrow-back.svg"/> <div class="title">중간발표</div>
+          </div>
+
+          <div *ngIf="!isInSubfolder()" class="project-folder">
+
+            <!-- 첫 번째 폴더 -->
+            <div class="folder" (click)="openFolder(0)">
+              <div class="folder-icon-inner">
+                <img class="folder-icon" src="assets/svg/folder-icon.svg"/>
+              </div>
+              <div>
+                <div class="folder-title-name">중간발표</div>
+                <div>2024.08.25</div>
+              </div>
+            </div>
+
+            <!-- 두 번째 폴더 -->
+            <div class="folder" (click)="openFolder(1)">
+              <div class="folder-icon-inner">
+                <img class="folder-icon" src="assets/svg/folder-icon.svg"/>
+              </div>
+              <div>
+                <div class="folder-title-name">기말발표</div>
+                <div>2024.12.15</div>
+              </div>
+            </div>
+
+            <!-- 새 폴더 -->
+            <div class="folder">
+              <div class="folder-icon-inner folder-icon-add">
+                <img class="folder-icon" src="assets/svg/Folder_add.svg"/>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 선택한 폴더의 하위 폴더 -->
+          <div *ngIf="isInSubfolder()" class="subfolder">
+
+            <div class="board-inner" (click)="openPopup()">
+              <div class="board-title">
+                <div class="board-title-name">중간발표 대본</div>
+                <div class="board-title-detail-info">
+                  <div>김재호</div>
+                  <div class="day">2024.08.01</div>
+                </div>
+              </div>
+              <div class="file">middlePT.pdf</div>
+              <div class="chat">
+                <img src="assets/svg/Chat.svg"><div>1</div>
+              </div>
+            </div>
+
+
+
+            <div class="board-inner board-inner-add">
+              <div style=" display: flex;  gap: 6px;">
+                <img style="width: 11px" src="assets/svg/plus.svg"/>
+                <div style="color: #969696">새 글쓰기</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 하얀 박스 (팝업) -->
+          <div class="popup-box" *ngIf="isPopupVisible">
+            <div>ddd</div>
+            <div class="popup-content">
+              <!-- 팝업 내용 -->
+              <div >
+                <p>댓글</p>
+                <button (click)="closePopup()">닫기</button>
+              </div>
+              <p>여기에 내용을 추가하세요.</p>
+            </div>
+          </div>
+
+          <div class="board-detail-page">
+            <div></div>
+
+          </div>
+
+        </div>
+        <img class="projectinfo" src="../../../../resourses/img/project/projectinfo.svg"/>
+      </div>
+    </div>
+  </div>
+</ion-content>

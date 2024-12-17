@@ -1,0 +1,80 @@
+<div class="course-doc-inner">
+  <div class="folder-container">
+    <!-- 로딩 인디케이터 -->
+    <div *ngIf="isLoading" class="loading-indicator">
+      <ion-spinner></ion-spinner>
+      <p>로딩 중...</p>
+    </div>
+
+    <!-- 에러 메시지 -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- 상단 네비게이션 (루트가 아닐 때만 표시) -->
+    <div *ngIf="currentTopicId" class="folder-header">
+      <img 
+        src="assets/svg/arrow-back.svg" 
+        style="cursor: pointer; width:12px;" 
+        (click)="closeFolder()"
+        alt="뒤로가기"
+      />
+      <div class="currentFolder-Name">{{ currentFolder?.topic_title }}</div>
+    </div>
+
+    <!-- 현재 위치의 폴더들 -->
+    <div class="folder-container-inner">
+      <div *ngFor="let folder of (currentTopicId ? subFolders : topLevelFolders)" 
+           class="folder-one" 
+           (click)="openFolder(folder)">
+        <div class="folder folder-icon">
+          <ion-icon name="folder"></ion-icon>
+        </div>
+        <div class="folder-title">
+          <div class="doc-txt">{{ folder.topic_title }}</div>
+          <div class="ellipsis-icon">
+            <ion-icon 
+              name="trash" 
+              style="cursor: pointer"
+              (click)="deleteDoc(folder.topic_id); $event.stopPropagation()">
+            </ion-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- 새 폴더 추가 버튼 -->
+      <div class="folder-one" *ngIf="!showNewTopicForm">
+        <div class="folder folder-add" (click)="showAddTopicForm()">
+          <img 
+            src="assets/svg/Folder_add.svg" 
+            alt="폴더 추가"
+            style="width:65px;"
+          >
+        </div>
+      </div>
+
+      <!-- 새 폴더 추가 입력 폼 -->
+      <div *ngIf="showNewTopicForm" class="folder-container-inner">
+        <div class="folder-one">
+          <div class="folder folder-icon">
+            <ion-icon name="folder"></ion-icon>
+          </div>
+          <div class="folder-title folder-input-container">
+            <input 
+              [(ngModel)]="newTopicTitle" 
+              placeholder="폴더 제목" 
+              (input)="validateInput()"
+              class="folder-input"
+            >
+            <button 
+              [disabled]="!isInputValid" 
+              (click)="createTopic()"
+              class="create-folder-btn">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

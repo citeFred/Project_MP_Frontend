@@ -1,0 +1,165 @@
+$primary-color: #6750a4;
+$text-color: #1c1b1f;
+$border-color: #e0e0e0;
+$background-color: #f5f5f5;
+$error-color: #b3261e;
+
+ion-header {
+  ion-toolbar {
+    --background: white;
+    --color: #{$text-color};
+    
+    ion-title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    ion-button {
+      --color: #{$text-color};
+      
+      ion-icon {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: #{$background-color};
+  
+  .video-upload {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    
+    ion-item {
+      --background: transparent;
+      --padding-start: 0;
+      --padding-end: 0;
+      --inner-padding-end: 0;
+      margin-bottom: 20px;
+      
+      &::part(native) {
+        padding: 0;
+      }
+      
+      ion-label {
+        color: $text-color;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        
+        &[position="stacked"] {
+          margin-bottom: 8px;
+          transform: none;
+        }
+      }
+      
+      ion-input {
+        --background: white;
+        --color: #{$text-color};
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --padding-top: 12px;
+        --padding-bottom: 12px;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        
+        &::part(native) {
+          padding: 0;
+        }
+      }
+      
+      input[type="file"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px dashed $border-color;
+        border-radius: 8px;
+        background: #fafafa;
+        
+        &::-webkit-file-upload-button {
+          background: white;
+          border: 1px solid $border-color;
+          border-radius: 20px;
+          padding: 8px 16px;
+          color: $text-color;
+          font-size: 14px;
+          margin-right: 12px;
+        }
+      }
+    }
+    
+    ion-button {
+      --background: #{$primary-color};
+      --border-radius: 100px;
+      --padding-top: 16px;
+      --padding-bottom: 16px;
+      height: 48px;
+      margin: 16px 0;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: none;
+      
+      &[disabled] {
+        --background: #{rgba($primary-color, 0.5)};
+      }
+    }
+    
+    div p {
+      color: $text-color;
+      font-size: 14px;
+      text-align: center;
+      margin: 12px 0;
+      opacity: 0.7;
+    }
+  }
+  
+  .video-list {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    
+    ion-list {
+      background: transparent;
+      
+      ion-item {
+        --background: transparent;
+        --padding-start: 16px;
+        --padding-end: 16px;
+        
+        ion-label {
+          h2 {
+            font-size: 16px;
+            font-weight: 500;
+            color: $text-color;
+            margin-bottom: 4px;
+          }
+          
+          p {
+            font-size: 14px;
+            color: rgba($text-color, 0.7);
+          }
+        }
+      }
+    }
+  }
+}
+
+// iOS 스타일 조정
+.ios {
+  ion-header ion-toolbar {
+    --border-width: 0;
+  }
+  
+  .video-upload {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Android 스타일 조정
+.md {
+  .video-upload {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}

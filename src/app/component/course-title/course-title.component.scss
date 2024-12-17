@@ -1,0 +1,104 @@
+
+section.BG-color{
+  //color: #b0b8ff;
+  //background-color: #E9EEFF;
+  //height: 300px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-content: center;
+}
+
+section.BG-color::before{
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  background-color: #c9d6ff;
+  height: 200px;
+  content:"";
+}
+
+//강의 제목
+div.box-title{
+  padding: 43px 72px;
+  background-color: #ffffff;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #c5c5c5;
+  width: 70%;
+  margin: 100px 0 10px 0;
+  flex-direction: column;
+  text-align: left;
+  min-width: 300px;
+  position: relative;
+
+}
+
+div.box-title h6{
+  color: #A2A2A2;
+  margin-top:30px;
+
+}
+
+.box-title .top ion-icon{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #90a6ff;
+  cursor: pointer;
+
+}
+
+.box-title .instructor-icon{
+  display:flex;
+  align-items: center;
+  gap:8px;
+}
+
+.box-title .instructor-icon img{
+  width:23px;
+}
+
+.box-title .instructor-icon .lecture-spot{
+  font-size: 15px;
+  color: #808080
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  text-align: center;
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+
+.lecture-title{
+  //background-color: #6d62fd;
+  font-size: 30px;
+  font-family: "pretendard-B", serif;
+}
+
+span.lecture-rule{
+  background-color: #6281fd;
+  border-radius: 10px;
+  padding: 10px;
+  place-items: center;
+}

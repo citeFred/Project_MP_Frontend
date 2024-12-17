@@ -1,0 +1,145 @@
+<script src="https://unpkg.com/@epicgames-ps/lib-pixelstreamingfrontend@latest/dist/pixelstreamingfrontend.js"></script>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <app-top-bar></app-top-bar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="exhibitionDetails">
+  <div class="repcontent">
+    <div class="part1">
+      <div class="top-box">
+        <div class="metatext">Hongik Metaverse SW Academy</div>
+          <div class="part2">
+            <div class="part2left">
+              <h2 class="project-name">{{ exhibitionDetails.exhibition_title }}</h2>
+              <p class="team-name"><ion-icon class="icons" name="people-outline"></ion-icon>
+                {{ exhibitionDetails.team_name }}
+              <p class="class-name"><ion-icon class="icons" name="flag-outline"></ion-icon> {{ exhibitionDetails.generation }} <span class="description"><ion-icon class="icons" name="book-outline"></ion-icon>{{ exhibitionDetails.description }}</span></p>
+            </div>
+            <div class="part2right">
+              <img class="title-image" [src]="imageUrl || '../../../assets/jpg/1.jpg'" alt="전시물 이미지">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="maincontent shadow-box">
+    <div class="maxmaincontent">
+
+      <div class="introduce texts">
+        <ion-icon name="bulb-outline" class="icons"></ion-icon> 프로젝트 소개
+      </div>
+      <ul>
+        <li class="introduce-content" *ngFor="let intro of exhibitionDetails.exhibitionIntros">{{ intro.introduce }}</li>
+      </ul>
+      <ion-item class="boundary"></ion-item>
+
+      <div class="members texts">
+        <ion-icon name="people-outline" class="icons"></ion-icon> 팀 멤버 소개
+      </div>
+      <ul class="member-list">
+        <li *ngFor="let member of exhibitionDetails.exhibitionMembers" class="member-item">
+          <div class="member-container">
+            <img [src]="member.signedUrl" alt="{{ member.name }}" class="member-image" />
+            <p class="member-name">{{ member.name }}</p>
+          </div>
+        </li>
+      </ul>
+      <ion-item class="boundary"></ion-item>
+
+      <div class="output texts">
+        <ion-icon name="trophy-outline" class="icons"></ion-icon> 프로젝트 사진 및 영상
+      </div>
+      <div class="output-container">
+        <ng-container *ngIf="exhibitionDetails.exhibitionDocs && exhibitionDetails.exhibitionDocs.length > 0">
+          <ng-container *ngFor="let doc of exhibitionDetails.exhibitionDocs">
+            <ion-item class="boundary"></ion-item>
+            <!-- 비디오가 있는 경우 -->
+            <video *ngIf="doc.file_path.endsWith('.mp4') && doc.signedUrl" controls class="output-video">
+              <source [src]="doc.signedUrl" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <!-- 이미지를 표시 -->
+            <img *ngIf="(doc.file_path.endsWith('.png') || doc.file_path.endsWith('.jpg'))"
+                 [src]="doc.signedUrl"
+                 alt="Document Image"
+                 class="doc-image">
+          </ng-container>
+        </ng-container>
+
+      </div>
+      <ion-item class="boundary"></ion-item>
+      <div class="texts">
+        <ion-icon name="trophy-outline" class="icons"></ion-icon> 프로젝트 체험
+      </div>
+      <div class="streaming-button output texts" >
+        <img
+          class="project-start"
+          src="./assets/png/unreal.png"
+          alt="3D 전시물 실행하기"
+          (click)="openStreamingInNewTab()"
+          style="cursor: pointer; width: 50%; height: auto;"
+        />
+      </div>
+
+<!--      // 전시물 수정 & 삭제-->
+
+      <!-- <div class="docs texts" *ngIf="exhibitionDetails.exhibitionDocs && exhibitionDetails.exhibitionDocs.length > 0">
+        <ion-icon name="document-outline" class="icons"></ion-icon> Documents
+        <ul class="doc-list">
+          <li *ngFor="let doc of exhibitionDetails.exhibitionDocs" class="doc-item">{{ doc.exhibition_doc_id }}</li>
+        </ul> -->
+      <!-- </div> -->
+
+
+    </div>
+  </div>
+  <!--      // 프로젝트 체험하기-->
+
+  <div class="unreal-streaming-container">
+
+
+    <!-- 또는 iframe으로 직접 표시 -->
+    <iframe
+      *ngIf="showStreaming"
+      [src]="streamingUrl"
+      width="100%"
+      height="600"
+      frameborder="0"
+      allow="autoplay; fullscreen">
+    </iframe>
+  </div>
+
+  <div class="parent-container">
+  <div class="button-container" [ngClass]="{'show': showButtons}"> <!-- 버튼을 조건부로 렌더링 -->
+    <ion-button [routerLink]="['/exhibition-update', exhibitionDetails.exhibition_id]" class="custom-button">수정하기</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteExhibition()" class="custom-button">전시물 삭제</ion-button>
+  </div>
+
+  <ion-button (click)="toggleButtons()" class="floating-button"> <!-- 동그란 + 아이콘 -->
+    <ion-icon name="add"></ion-icon> <!-- 또는 원하는 아이콘 사용 -->
+  </ion-button>
+</div>
+
+<div class="parent-container">
+  <div class="button-container" [ngClass]="{'show': showButtons}"> <!-- 버튼을 조건부로 렌더링 -->
+    <ion-button [routerLink]="['/exhibition-update', exhibitionDetails.exhibition_id]" class="custom-button">수정하기</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteExhibition()" class="custom-button">전시물 삭제</ion-button>
+  </div>
+
+  <ion-button (click)="toggleButtons()" class="floating-button"> <!-- 동그란 + 아이콘 -->
+    <ion-icon name="add"></ion-icon> <!-- 또는 원하는 아이콘 사용 -->
+  </ion-button>
+</div>
+
+
+
+</ion-content>

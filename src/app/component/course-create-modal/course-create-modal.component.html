@@ -1,0 +1,24 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>클래스 생성</ion-title>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content class="modal-content">
+  <div class="join-title">클래스 생성</div>
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <div class="input-course">
+      <div class="title-login">클래스명</div>
+      <ion-input formControlName="course_title" color="none"></ion-input>
+    </div>
+    <div class="input-course">
+      <div class="title-login">강사명</div>
+      <ion-input formControlName="instructor_name" color="none"></ion-input>
+    </div>
+    <div class="input-course">
+      <div class="title-login">설명</div>
+      <ion-input formControlName="description" color="none"></ion-input>
+    </div>
+    <ion-button class="btn-login" type="submit">생성하기</ion-button>
+  </form>
+</ion-content>
