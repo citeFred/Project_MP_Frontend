@@ -11,7 +11,7 @@ import { ProjectResponseData } from "src/app/models/project/projects/projects-re
   providedIn: 'root',
 })
 export class ProjectService {
-  private projectApiUrl = 'http://localhost:3000/projects'; // 실제 API URL로 변경하세요.
+  private projectApiUrl = 'http://localhost:3000/api/projects'; // 실제 API URL로 변경하세요.
 
   constructor(private http: HttpClient) {}
 

@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class AttendanceService {
-  private attendanceApiurl = 'http://localhost:3000/attendance';
+  private attendanceApiurl = 'http://localhost:3000/api/attendance';
 
   constructor(private http: HttpClient) { }
 }

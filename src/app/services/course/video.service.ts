@@ -11,7 +11,7 @@ import { VideoSummary } from 'src/app/models/course/video/video-summary.interfac
   providedIn: 'root'
 })
 export class VideoService {
-  private ApiUrl = 'http://localhost:3000/courses';
+  private ApiUrl = 'http://localhost:3000/api/courses';
 
   constructor(private http: HttpClient) {}
   

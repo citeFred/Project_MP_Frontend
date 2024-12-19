@@ -19,7 +19,7 @@ import { VideoTopicResponseData } from 'src/app/models/course/video_topic/video_
   providedIn: 'root',
 })
 export class CourseService {
-  private courseApiUrl = 'http://localhost:3000/courses'; // 강의 관련 API URL
+  private courseApiUrl = 'http://localhost:3000/api/courses'; // 강의 관련 API URL
   /*private courseRegisApiUrl = `http://localhost:3000/courses/${courseId}/courseRegistration`; //강의 신청 관련 API URL*/
 
 

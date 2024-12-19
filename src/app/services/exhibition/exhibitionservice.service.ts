@@ -7,7 +7,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ExhibitionService {
-  private apiUrl = 'http://localhost:3000'; // 실제 API URL로 변경하세요.
+  private apiUrl = 'http://localhost:3000/api/exhibitions';
+  private apiUrl_intro = 'http://localhost:3000/api/exhibition-intro';
+  private apiUrl_members = 'http://localhost:3000/api/exhibition-members';
+  private apiUrl_docs = 'http://localhost:3000/api/exhibition-docs';
 
   constructor(private http: HttpClient) {}
 
@@ -38,42 +41,42 @@ export class ExhibitionService {
   // Create: 전시물 생성하기 (생성페이지)
   saveExhibitionData(data: FormData): Observable<any> {
     const headers = this.validateToken()
-    return this.http.post(`${this.apiUrl}/exhibitions/register`, data, { headers });
+    return this.http.post(`${this.apiUrl}/register`, data, { headers });
   }
 
   saveIntroductions(data: FormData): Observable<any> {
     const headers = this.validateToken()
-    return this.http.post(`${this.apiUrl}/exhibition-intro/register`, data, { headers });
+    return this.http.post(`${this.apiUrl_intro}/register`, data, { headers });
   }
 
   saveMembers(data: FormData): Observable<any> {
     const headers = this.validateToken()
-    return this.http.post(`${this.apiUrl}/exhibition-members/register`, data, { headers });
+    return this.http.post(`${this.apiUrl_members}/register`, data, { headers });
   }
 
   saveOutputs(data: FormData): Observable<any> {
     const headers = this.validateToken()
-    return this.http.post(`${this.apiUrl}/exhibition-docs/register`, data, { headers });
+    return this.http.post(`${this.apiUrl_docs}/register`, data, { headers });
   }
 
   // Read: 전시물 목록 가져오기 (메인페이지) - 프로젝트이름, 팀이름, 기수, 썸네일
   getExhibitions(): Observable<any[]> {
     const headers = this.validateToken()
-    return this.http.get<any[]>(`${this.apiUrl}/exhibitions`, { headers });
+    return this.http.get<any[]>(`${this.apiUrl}`, { headers });
   }
 
   // Presigned URL 요청 메소드
   getPresignedUrls(Id: number): Observable<{ url: string }> {
     const headers = this.validateToken()
     console.log('getpresingedurl 확인');
-    return this.http.get<{ url: string }>(`${this.apiUrl}/exhibitions/presigned-url/${Id}`, { headers });
+    return this.http.get<{ url: string }>(`${this.apiUrl}presigned-url/${Id}`, { headers });
   }
   getMemberSignedUrl(memberId: number): Observable<{ url: string }> {
-    return this.http.get<{ url: string }>(`${this.apiUrl}/exhibition-members/presigned-url/${memberId}`);
+    return this.http.get<{ url: string }>(`${this.apiUrl_members}/presigned-url/${memberId}`);
   }
 
   getDocSignedUrl(docId: number): Observable<{ url: string }> {
-    return this.http.get<{ url: string }>(`${this.apiUrl}/exhibition-docs/presigned-url/${docId}`);
+    return this.http.get<{ url: string }>(`${this.apiUrl_docs}/presigned-url/${docId}`);
   }
 
 
@@ -126,15 +129,15 @@ export class ExhibitionService {
 
   private getExhibitionDetails(id: number): Observable<any> {
     const headers = this.validateToken();
-    return this.http.get<any>(`${this.apiUrl}/exhibitions/${id}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers });
   }
   // Update: 전시물 수정(파일을 삭제하고 올릴 수 있게)
   updateExhibition(id: string, exhibitionData: FormData, introData: FormData, membersData: FormData, outputsData: FormData): Observable<any> {
     return forkJoin({
-      exhibition: this.http.put(`${this.apiUrl}/exhibitions/${id}`, exhibitionData),
-      intro: this.http.put(`${this.apiUrl}/exhibition-intro/${id}`, introData),
-      members: this.http.put(`${this.apiUrl}/exhibition-members/${id}`, membersData),
-      outputs: this.http.put(`${this.apiUrl}/exhibition-docs/${id}`, outputsData)
+      exhibition: this.http.put(`${this.apiUrl}/${id}`, exhibitionData),
+      intro: this.http.put(`${this.apiUrl_intro}/${id}`, introData),
+      members: this.http.put(`${this.apiUrl_members}/${id}`, membersData),
+      outputs: this.http.put(`${this.apiUrl_docs}/${id}`, outputsData)
     });
   }
 
@@ -142,7 +145,7 @@ export class ExhibitionService {
   deleteExhibition(id: string): Observable<any> {
     const headers = this.validateToken()
     return forkJoin({
-      exhibition: this.http.delete(`${this.apiUrl}/exhibitions/${id}`,{headers}),
+      exhibition: this.http.delete(`${this.apiUrl}/${id}`,{headers}),
     });
   }
 }
