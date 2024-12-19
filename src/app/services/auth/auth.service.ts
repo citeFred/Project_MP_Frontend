@@ -100,8 +100,8 @@ import { tap, catchError } from 'rxjs/operators';
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn = this.loggedIn.asObservable();
-  private userApiUrl = 'http://localhost:3000/users';
-  private authApiUrl = 'http://localhost:3000/auth';
+  private userApiUrl = 'http://localhost:3000/api/users';
+  private authApiUrl = 'http://localhost:3000/api/auth';
 
   constructor(private http: HttpClient) {
     // 초기 로그인 상태 설정
