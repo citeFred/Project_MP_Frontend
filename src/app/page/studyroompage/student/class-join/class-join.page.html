@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="layout">
+    <app-sidemenu class="sidemenu"></app-sidemenu>
+    <div class="content-wrapper">
+      <div class="main-container">
+
+        <div>
+          <div class="project-search">
+            <ion-icon size="large" name="file-tray-full-outline"></ion-icon>
+            <h2 class="project-title">학습 클래스 신청</h2>
+          </div>
+          <div class="class-create">
+            <h6>현재 개설된 학습 클래스를 살펴보고 신청해 보세요</h6>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="project-box" >
+          <ion-grid class="class1" *ngFor="let class of classes; let i = index">
+            <ion-row >
+              <ion-col size="1">
+                <ion-text>{{ class.id }}</ion-text>
+              </ion-col>
+              <ion-col size="1.5">
+                <ion-label>{{ class.instructor }}</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label>{{ class.title }}</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label>{{ class.description }}</ion-label>
+              </ion-col>
+              <ion-col size="1.5">
+                <ion-label>
+                  <ion-button color="tertiary" (click)="getClassInfo(class.id)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <h4 class="class-button-text">클래스정보</h4>
+                  </ion-button>
+                </ion-label>
+              </ion-col>
+              <ion-col size="1.5">
+                <ion-label>
+                  <ion-button color="" (click)="!isRegistered(class.id) ? joinClass(class.id) : null">
+                    <ion-icon name="add"></ion-icon>
+                    <h4 class="class-button-text">{{ isRegistered(class.id) ? '취소하기' : '신청하기' }}</h4>
+                  </ion-button>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        </div>
+      </div>
+    </div>
+</ion-content>

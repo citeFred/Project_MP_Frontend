@@ -1,0 +1,30 @@
+@charset "UTF-8";
+:host {
+  --width: 250px; /* 모달의 너비 */
+  --height: auto; /* 높이는 자동으로 조정 */
+}
+
+ion-content {
+  padding: 10px; /* 패딩 조정 */
+  --background: rgba(255, 255, 255, 0.9); /* 배경색 조정 */
+  border-radius: 10px; /* 모서리 둥글게 */
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px; /* 여백 조정 */
+  text-align: center;
+  font-size: 14px; /* 폰트 크기 조정 */
+}
+.user-profile h2 {
+  font-size: 18px; /* 사용자 이름 폰트 크기 */
+  margin: 0; /* 마진 제거 */
+}
+.user-profile p {
+  font-size: 12px; /* 역할 폰트 크기 */
+  color: #666; /* 역할 색상 조정 */
+  margin: 0; /* 마진 제거 */
+}/*# sourceMappingURL=user-data-modal.component.css.map */

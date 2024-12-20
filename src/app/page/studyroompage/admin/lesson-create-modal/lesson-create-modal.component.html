@@ -1,0 +1,23 @@
+<ion-content class="modal-content">
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title class="modal-toolbar-title">강의 영상 등록</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <form class="modal-toolbar-contents"[formGroup]="lessonForm" (ngSubmit)="onSubmit()">
+
+      <ion-select formControlName="class_id" label="코스 선택" placeholder="ex: NestJS, Angular를 활용한 풀스택 웹 서비스 개발(과정선택)" label-placement="stacked" interface="popover">
+        <ion-select-option *ngFor="let class of classes" [value]="class.id">
+          {{ class.title }} - {{ class.instructor }}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-input formControlName="lesson_title" label="강의(영상)제목" placeholder="ex: Node.js 기반의 NestJS, Angular 프레임워크 웹 개발" labelPlacement="stacked" [counter]="true" maxlength="30" [clearInput]="true"></ion-input>
+      <br>
+      <ion-input formControlName="lesson_video" label="코스에 등록할 강의 영상 첨부 ➡" labelPlacement="" type="file" [clearInput]="true"></ion-input>
+
+      <div class="btn-container">
+        <a data-animation="ripple" class="btn-login" onclick="onSubmit()">등록하기</a>
+      </div>
+    </form>
+</ion-content>

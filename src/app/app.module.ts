@@ -4,18 +4,23 @@ import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AttendanceModalComponent } from './component/attendance-modal/attendance-modal.component';
+import { AttendanceModalComponent } from './page/studyroompage/student/attendance-modal/attendance-modal.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SidemenuComponent } from './component/sidemenucomponent/sidemenu.component';
-import {TopBarComponent} from "./component/top-bar/top-bar.component";
-import {HttpClientModule} from "@angular/common/http";
+import { SidemenuComponent } from './layout/sidemenucomponent/sidemenu.component';
+import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from '@angular/common';
-import{ExhibitionComponent} from "./page/exhibitionpage/exhibition/exhibition.component";
-import { CourseService } from './services/course/course.service'; // 서비스 경로 확인
-import { VideoCreateModalComponent } from './component/video-create-modal/video-create-modal.component';
-import { VideoStreamComponent } from './component/video-stream/video-stream.component';
+import { ExhibitionComponent } from "./page/exhibitionpage/exhibition/exhibition.component";
+import { CourseService } from './services/course/course.service';
+import { StudyroomPageModule } from './page/studyroompage/studyroompage.module';
+import { MainPageModule } from './page/mainpage/mainpage.module';
+import { ExhibitionPageModule } from './page/exhibitionpage/exhibitionpage.module';
+import { TopBarComponent } from './layout/top-bar/top-bar.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [AppComponent, AttendanceModalComponent],
 
@@ -24,10 +29,20 @@ import { VideoStreamComponent } from './component/video-stream/video-stream.comp
     HttpClientModule,
     AppRoutingModule,
     TopBarComponent,
+    SidemenuComponent,
     CommonModule,
+    FormsModule,
     ExhibitionComponent,
-    FormsModule, SidemenuComponent
-
+    StudyroomPageModule,
+    MainPageModule,
+    ExhibitionPageModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:4200'],
+        disallowedRoutes: [],
+      },
+    }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CourseService ],
   bootstrap: [AppComponent],

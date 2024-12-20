@@ -6,6 +6,8 @@ import { ApiResponse } from 'src/app/models/common/api-response.interface';
 import { VideoResponseData } from 'src/app/models/course/video/video-response.interface';
 import { VideoRequestData } from 'src/app/models/course/video/video-request.interface';
 import { VideoSummary } from 'src/app/models/course/video/video-summary.interface';
+import { CourseResponseData } from 'src/app/models/course/courses/course-response.interface';
+import { CourseRegistrationRequestData } from 'src/app/models/course/courses/course-registration-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,7 @@ export class VideoService {
       Authorization: `Bearer ${token}`
     };
   }
+
 
   // private getAuthHeaders(): HttpHeaders {
   //   const token = localStorage.getItem('token');
@@ -76,4 +79,31 @@ export class VideoService {
     const headers = this.getAuthHeaders();
     return this.http.get<{ summary: string }>(`${this.ApiUrl}/${courseId}/${videoTopicId}/video/summary/${videoId}`, { headers })
   }
+
+  // 모든 강의 정보를 불러오는 메서드
+  getAllClasses(): Observable<ApiResponse<CourseResponseData[]>> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<ApiResponse<CourseResponseData[]>>(this.ApiUrl, { headers });
+  }
+
+  // 강의 정보 수정
+  updateClass(classId: number, classData: any): Observable<ApiResponse<CourseResponseData>> {
+    const headers = this.getAuthHeaders(); // 인증 헤더 가져오기
+    return this.http.patch<ApiResponse<CourseResponseData>>(`${this.ApiUrl}/class/${classId}/update`, classData, { headers }); // PUT 요청
+
+  }
+
+  // 강의 삭제 메서드 추가
+  deleteClass(classId: number): Observable<ApiResponse<void>> {
+    const headers = this.getAuthHeaders(); // 인증 헤더 가져오기
+    return this.http.delete<ApiResponse<void>>(`${this.ApiUrl}/class/${classId}/delete`, { headers }); // DELETE 요청
+  }
+
+  //수강 신청 받음
+  joinClass(classId: number, registrationData: CourseRegistrationRequestData): Observable<ApiResponse<CourseRegistrationRequestData>> {
+    const headers = this.getAuthHeaders(); // 인증 헤더 가져오기
+    const url = `${this.ApiUrl}/${classId}/classRegistration/register`; // 올바른 URL 구성
+    return this.http.post<ApiResponse<CourseRegistrationRequestData>>(url, registrationData, { headers }); // POST 요청으로 변경
+  }
+  
 }

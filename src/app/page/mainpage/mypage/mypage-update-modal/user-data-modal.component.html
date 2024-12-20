@@ -1,0 +1,18 @@
+<ion-content class="modal-content" (click)="closeModal()">
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title class="modal-toolbar-title">프로필</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <form class="modal-toolbar-contents"[formGroup]="modifyUserForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input label="사용자 이름" placeholder="{{ userName }}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="회원 역할" placeholder="{{ userRole }}"></ion-input>
+      </ion-item>
+      <div class="btn-container">
+        <a data-animation="ripple" class="studyroom-btn" (click)="closeModal()">닫기</a>
+      </div>
+    </form>
+</ion-content>

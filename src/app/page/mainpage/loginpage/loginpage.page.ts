@@ -119,7 +119,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';  // 로그인 서비스
 import { AlertController, ModalController } from '@ionic/angular';
-import { JoinModalComponent } from "../../../component/join-modal/join-modal.component";
+import { JoinModalComponent } from "../join-modal/join-modal.component";
 import { firstValueFrom } from 'rxjs';
 
 @Component({

@@ -1,0 +1,22 @@
+<ion-content class="modal-content">
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title class="modal-toolbar-title">학습 코스 생성</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <form class="modal-toolbar-contents" [formGroup]="classForm" (ngSubmit)="onSubmit()">
+      <ion-input formControlName="title" label="코스이름" placeholder="ex: NestJS, Angular를 활용한 풀스택 웹 서비스 개발" labelPlacement="stacked" [counter]="true" maxlength="30" [clearInput]="true"></ion-input>
+      <ion-input formControlName="instructor" label="강사이름" placeholder="ex: 김인용" labelPlacement="stacked" [counter]="true" maxlength="20" [clearInput]="true"></ion-input>
+      <ion-textarea formControlName="description" label="코스설명"  placeholder="ex: Node.js 기반의 NestJS, Angular 프레임워크 웹 개발" labelPlacement="stacked" [counter]="true" maxlength="200" ></ion-textarea>
+      
+      <ion-select formControlName="generation" label="기수" placeholder="ex: 1기(기수선택)" label-placement="stacked" interface="popover">
+        <ion-select-option *ngFor="let generation of generations" [value]="generation">
+          {{ generation }}기
+        </ion-select-option>
+      </ion-select>
+
+      <div class="btn-container">
+        <button data-animation="ripple" type="submit" class="btn-login">생성하기</button>
+      </div>
+    </form>
+</ion-content>
