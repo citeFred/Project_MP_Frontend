@@ -4,10 +4,10 @@ import { AttendanceModalComponent } from '../student/attendance-modal/attendance
 
 @Component({
   selector: 'app-studyroom',
-  templateUrl: './studyroom.page.html',
-  styleUrls: ['./studyroom.page.scss'],
+  templateUrl: './studymain.page.html',
+  styleUrls: ['./studymain.page.scss'],
 })
-export class StudyroomPage implements OnInit, OnDestroy {
+export class Studymain implements OnInit, OnDestroy {
   currentDate: string | undefined;
   currentDate2: string | undefined;
   private intervalId: any;
@@ -43,6 +43,4 @@ export class StudyroomPage implements OnInit, OnDestroy {
     this.currentDate = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일 ${now.getHours()}시 ${now.getMinutes()}분`;
     this.currentDate2 = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
   }
-
-
 }

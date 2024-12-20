@@ -15,11 +15,14 @@
         <ion-label>아카데미 소개</ion-label>
       </ion-button>
       <!-- ngIf 이용하여 메뉴 관리 -->
-      <ng-container *ngIf="isLoggedIn">
+      <!-- <ng-container *ngIf="isLoggedIn">
         <div class="btn-container">
           <a data-animation="ripple" a href="/studyroom/main" class="studyroom-btn">학습룸</a>
         </div>
-      </ng-container>
+      </ng-container> -->
+      <ion-button routerLink="/studyroom/main" fill="clear">
+        <ion-label>학습룸</ion-label>
+      </ion-button>
     </div>
 
     <div class="menu-right">

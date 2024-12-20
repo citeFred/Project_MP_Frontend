@@ -1,13 +1,12 @@
+@charset "UTF-8";
 ion-card-title {
   font-family: "pretendard-B", serif;
   color: #464646;
 }
 
-ion-card{
+ion-card {
   border-radius: 10px;
 }
-
-
 
 ion-content {
   height: 100vh; /* 전체 높이를 100%로 설정 */
@@ -28,7 +27,6 @@ ion-content {
 .content-wrapper {
   flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
   overflow: auto; /* 콘텐츠가 넘칠 경우 스크롤 가능하도록 설정 */
-
 }
 
 .main-container {
@@ -51,8 +49,6 @@ ion-content {
   margin-top: 100px;
 }
 
-
-
 .attendance, .blank {
   width: 50%;
   max-width: 750px; /* 최대 너비 600px */
@@ -60,10 +56,9 @@ ion-content {
   box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
 }
 
-.attendance{
+.attendance {
   margin-right: 30px;
 }
-
 
 .attendance ion-card-header {
   padding-left: 30px;
@@ -105,7 +100,6 @@ hr {
   margin-top: 10px;
   margin-bottom: 10px;
   color: black;
-
 }
 
 .attendance .attendance-button {
@@ -114,24 +108,12 @@ hr {
   font-size: 20px;
 }
 
-
-
-.centered-calendar {
-  --background: transparent;
-  margin: auto;
-}
-
 .content-box {
   height: 35vh;
   min-width: 300px;
   min-height: 365px;
   max-height: 500px;
   margin: 0;
-}
-
-.blank-box{
-  display: flex;
-  margin: auto;
 }
 
 .class-project {
@@ -160,13 +142,19 @@ hr {
   min-height: 100px;
   max-height: 200px;
   border-radius: 15px;
+  padding: 15px 20px;
 }
-.process-icon{
+
+.process-icon {
   height: 90%;
 }
 
-.process-icon{
+.process-icon {
   height: 70%;
 }
 
-
+/*캘린더*/
+.calendar {
+  margin: 0 auto;
+  padding: 20px 0;
+}/*# sourceMappingURL=studyroom.page.css.map */
