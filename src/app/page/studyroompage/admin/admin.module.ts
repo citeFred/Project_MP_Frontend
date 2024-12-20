@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { AdminRoutingModule } from './admin-routing.module';
+// import { AdminRoutingModule } from './admin-routing.module';
 import { SidemenuComponent } from 'src/app/layout/sidemenucomponent/sidemenu.component';
 import { RegistrationAdminPage } from './registration-admin/registration-admin.page';
 import { ProjectCreateComponent } from './project-create/project-create.component';
@@ -17,7 +17,7 @@ import { VideoCreateModalComponent } from './video-create-modal/video-create-mod
     CommonModule,
     FormsModule,
     IonicModule,
-    AdminRoutingModule,
+    // AdminRoutingModule,
     SidemenuComponent,
     ReactiveFormsModule,
   ],

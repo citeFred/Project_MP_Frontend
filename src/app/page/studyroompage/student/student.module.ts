@@ -7,14 +7,14 @@ import { ClassJoinPage } from './class-join/class-join.page';
 import { ClassMyPage } from './class-my/class-my.page';
 import { ProjectmyPage } from './projectmy/projectmy.page';
 import { ProjectsearchPage } from './projectsearch/projectsearch.page';
-import { StudentRoutingModule } from './student-routing.module';
+// import { StudentRoutingModule } from './student-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StudentRoutingModule,
+    // StudentRoutingModule,
     SidemenuComponent,
     ReactiveFormsModule
   ],

@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SidemenuComponent } from 'src/app/layout/sidemenucomponent/sidemenu.component';
+import { TopBarComponent } from 'src/app/layout/top-bar/top-bar.component';
+import { Studymain } from './studymain/studymain.page';
+import { StudyroomPageRoutingModule } from './studyroompage-routing.module';
 import { AdminModule } from './admin/admin.module';
 import { StudentModule } from './student/student.module';
-import { StudyroomPageRoutingModule } from './studyroompage-routing.module';
-import { StudyroomPageComponent } from './studyroompage.component';
-import { TopBarComponent } from 'src/app/layout/top-bar/top-bar.component';
-import { StudyroomPage } from './studyroom/studyroom.page';
 
 
 @NgModule({
@@ -19,10 +18,10 @@ import { StudyroomPage } from './studyroom/studyroom.page';
     TopBarComponent,
     SidemenuComponent,
     ReactiveFormsModule,
-    AdminModule,
-    StudentModule,
     StudyroomPageRoutingModule,
+    AdminModule,
+    StudentModule
   ],
-  declarations: [StudyroomPage, StudyroomPageComponent]
+  declarations: [Studymain]
 })
 export class StudyroomPageModule {}
