@@ -1,4 +1,3 @@
-// src/app/services/course.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'; // HttpHeaders 추가
 import { catchError, Observable, throwError } from 'rxjs';
@@ -7,7 +6,6 @@ import { ApiResponse } from 'src/app/models/common/api-response.interface';
 import { CourseWithCourseRegistrationResponseData } from 'src/app/models/course/courses/course-with-courseregistration-response.interface';
 import { CourseDocRequestData } from 'src/app/models/course/course_doc/course_doc-request.interface';
 import { VideoTopicRequestData } from 'src/app/models/course/video_topic/video_topic-request.interface';
-import { VideoRequestData } from 'src/app/models/course/video/video-request.interface';
 import { DocNameResponseData } from 'src/app/models/course/doc_name/doc_name-request.interface';
 import { CourseRegistrationResponseData } from 'src/app/models/course/courses/course-registation-response.interface';
 import { CourseRegistrationRequestData } from 'src/app/models/course/courses/course-registration-request.interface';
