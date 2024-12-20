@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>클래스 신청</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let course of coursesList" class="course-section">
+    <h2>{{ course.title }}</h2>
+    <p>{{ course.description }}</p>
+    <p>강사: {{ course.instructor }} | 기수: {{ course.generation }}</p>
+    <p *ngIf="course.course_notice">공지사항: {{ course.course_notice }}</p>
+
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>신청일</th>
+          <th>학생명</th>
+          <th>아이디</th>
+          <th>상태</th>
+          <th>작업</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registration of CourseRegistrationResponseData[course.id]; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ registration.course_reporting_date | date: 'MM/dd' }}</td>
+          <td>{{ registration.user?.user_name }}</td>
+          <td>{{ registration.user?.id }}</td>
+          <td>{{ registration.course_registration_status === 'APPROVED' ? '승인' : '대기' }}</td>
+          <td>
+            <ion-button 
+              (click)="approveButton(course.id, registration.course_registration_id)">
+              수락
+            </ion-button>
+            <ion-button 
+              (click)="rejectButton(course.id, registration.course_registration_id)" 
+              color="danger">
+              거절
+            </ion-button>
+          </td>
+        </tr>
+        <tr *ngIf="!CourseRegistrationResponseData[course.id]?.length">
+          <td colspan="6" class="no-registrations">신청된 사용자가 없습니다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-list id="inbox-list">
+  <!-- Home -->
+  <ion-item button (click)="navigateTo('studyroom/home')">
+    <ion-icon name="home" slot="start"></ion-icon>
+    <ion-label>홈</ion-label>
+  </ion-item>
+
+  <!-- Class Collapse -->
+  <ion-item button (click)="toggleClasses()">
+    <ion-icon name="book" slot="start"></ion-icon>
+    <ion-label>학습방(수강생 메뉴)</ion-label>
+    <ion-icon [name]="classesVisible ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-list [ngClass]="{'slide-down': classesVisible, 'slide-up': !classesVisible}" *ngIf="classesVisible">
+    <ion-item button (click)="navigateTo('/studyroom/student/classmy')">
+      <ion-label>강의 학습하기</ion-label>
+    </ion-item>
+    <ion-item button (click)="navigateTo('/studyroom/student/classjoin')">
+      <ion-label>학습 코스 신청</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- ADMIN Collapse -->
+  <ion-item button (click)="toggleAdminMenues()">
+    <ion-icon name="settings" slot="start"></ion-icon>
+    <ion-label>관리자(관리자 메뉴)</ion-label>
+    <ion-icon [name]="AdminMenuesVisible ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-list [ngClass]="{'slide-down': AdminMenuesVisible, 'slide-up': !AdminMenuesVisible}" *ngIf="AdminMenuesVisible">
+    <ion-item button (click)="navigateTo('/studyroom/admin/classlist')">
+      <ion-label>클래스(Class) 관리</ion-label>
+    </ion-item>
+    <ion-item button (click)="navigateTo('/studyroom/admin/lessonlist')">
+      <ion-label>강의(Lesson) 관리</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-list>

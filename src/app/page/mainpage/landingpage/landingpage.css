@@ -1,0 +1,47 @@
+.spline-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0e21a3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spline-container #canvas3d {
+  background: #0e21a3;
+}
+
+.spline-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.box {
+  position: absolute;
+  bottom: 8px;
+  right: 21px; /* Adjust as needed */
+  width: 140px;
+  height: 50px;
+  background-color: #0f2a60;
+  border-radius: 10px;
+  text-align: center;
+  font-family: "pretendard-B", serif;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.school {
+  width: 40px;
+  padding-left: 15px;
+}
+
+.schooltext {
+  padding-left: 7px;
+  color: white;
+}/*# sourceMappingURL=firstpage.page.css.map */

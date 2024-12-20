@@ -1,0 +1,106 @@
+<ion-content>
+  <div class="layout">
+    <app-sidemenu class="sidemenu"></app-sidemenu>
+    <div class="content-wrapper">
+      <div class="main-container">
+        <div>
+          <div class="project-search">
+            <ion-icon size="large" name="settings-outline"></ion-icon>
+            <h2 class="project-title">강의 관리 대시보드</h2>
+          </div>
+          <div class="class-create">
+            <h6>강의 관련 데이터를 관리하는 페이지 - 🚧(연결공사중)</h6>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="project-box">
+          <ion-card class="class2">
+            <!-- 카드 상단 섹션 -->
+            <ion-grid>
+              <ion-row>
+                <ion-col size="">
+                  <ion-card-title>{{ class.title }}</ion-card-title>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-card-title>{{ class.instructor }}</ion-card-title>
+                </ion-col>
+                <ion-col size="2">
+                  <ion-label>
+                    <ion-button color="" (click)="createLesson()">
+                      <ion-icon name="add"></ion-icon>
+                      <h4 class="lesson-button-text">강의추가</h4>
+                    </ion-button>
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <!-- 카드 상단 섹션 End-->
+            <!-- 컨텐츠 섹션 -->
+            <ion-card-content>
+              <ion-list>
+                <!-- 컨텐츠 컬럼명 섹션 -->
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="1">
+                      <ion-label>번호</ion-label>
+                    </ion-col>
+                    <ion-col>
+                      <ion-label>강의제목</ion-label>
+                    </ion-col>
+                    <ion-col size="1.5">
+                      <ion-label>재생</ion-label>
+                    </ion-col>
+                    <ion-col size="1.5">
+                      <ion-label>삭제</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <hr><!-- 구분선 -->
+                  <!-- 컬럼명 섹션 End -->
+
+                  <!-- 컨텐츠 리스트 섹션 -->
+                  <ion-row *ngFor="let lesson of getPaginatedLessons()" href="https://s3-bucket-boardapp.s3.ap-northeast-2.amazonaws.com/exhibitions/videos/4858b7a8-0a64-4ddc-aff6-ff8fd76e73f5_KakaoTalk_Video_2024-11-07-11-51-11.mp4" target="_blank">
+                    <ion-col size="1">
+                      <ion-text>{{ lesson.id }}</ion-text>
+                    </ion-col>
+                    <ion-col>
+                      <ion-label>{{ lesson.name }}</ion-label>
+                    </ion-col>
+                    <ion-col size="1.5">
+                      <ion-label>
+                        <ion-button color="tertiary">
+                          <ion-icon name="logo-youtube"></ion-icon>
+                          <h4 class="lesson-button-text">강의보기</h4>
+                        </ion-button>
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="1.5">
+                      <ion-label>
+                        <ion-button color="danger" (click)="deleteLesson(lesson.id)">
+                          <ion-icon name="trash"></ion-icon>
+                          <h4 class="lesson-button-text">강의삭제</h4>
+                        </ion-button>
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <!-- 컨텐츠 리스트 섹션 End-->
+                </ion-grid>
+              </ion-list>
+            </ion-card-content>
+            <!-- 컨텐츠 섹션 End -->
+
+            <!-- 컨텐츠 페이징 섹션 -->
+            <div class="pagination">
+              <div class="pagination-buttons">
+                <ion-button color="tertiary" (click)="prevPage()" [disabled]="currentPage === 1">이전</ion-button>
+                <ion-button color="tertiary" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= class.lessons.length">다음</ion-button>
+              </div>
+            </div>
+            <!-- 컨텐츠 페이징 섹션 End-->
+          </ion-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

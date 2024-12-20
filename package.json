@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@auth0/angular-jwt": "^5.2.0",
     "@epicgames-ps/lib-pixelstreamingfrontend-ue5.3": "^1.0.8",
     "@epicgames-ps/lib-pixelstreamingfrontend-ui-ue5.3": "^1.0.7",
     "@ionic/angular": "^8.0.0",

@@ -13,6 +13,7 @@ import { CourseRegistrationResponseData } from 'src/app/models/course/courses/co
 import { CourseRegistrationRequestData } from 'src/app/models/course/courses/course-registration-request.interface';
 import { CourseRequestData } from 'src/app/models/course/courses/course-request.interface';
 import { VideoTopicResponseData } from 'src/app/models/course/video_topic/video_topic-response.interface';
+import { ClassPaginatedResponse } from 'src/app/models/course/classes/class-paginated-response.interface';
 
 
 @Injectable({
@@ -116,13 +117,17 @@ export class CourseService {
     const headers = this.getAuthHeaders();
     return this.http.get<ApiResponse<CourseWithCourseRegistrationResponseData>>(`${this.courseApiUrl}/${courseId}/courseRegistration/${id}/approvedcourse`, { headers });
   }
-    // 수강신청 상태 수정(변경)
-    updateRegistration(courseId: number, id: number,  registrationData: CourseRegistrationRequestData): Observable<ApiResponse<CourseRegistrationResponseData>> {
-        const headers = this.getAuthHeaders();
-        return this.http.patch<ApiResponse<CourseRegistrationResponseData>>(`${this.courseApiUrl}/${courseId}/courseRegistration/${id}/update`, registrationData, { headers })
-    }
+  // 수강신청 상태 수정(변경)
+  updateRegistration(courseId: number, id: number,  registrationData: CourseRegistrationRequestData): Observable<ApiResponse<CourseRegistrationResponseData>> {
+      const headers = this.getAuthHeaders();
+      return this.http.patch<ApiResponse<CourseRegistrationResponseData>>(`${this.courseApiUrl}/${courseId}/courseRegistration/${id}/update`, registrationData, { headers })
+  }
 
-
+  // 페이징처리된 강의 전체 목록을 불러오는 메서드
+  getPaginatedClasses(page: number, limit: number): Observable<ApiResponse<ClassPaginatedResponse>> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<ApiResponse<ClassPaginatedResponse>>(`${this.courseApiUrl}/paginated?page=${page}&limit=${limit}`, { headers });
+  }
   // 수강신청 취소
   canceljoinCourse(courseId: number,course_registration_id:number): Observable<ApiResponse<void>> {
     const headers = this.getAuthHeaders(); // 인증 헤더 가져오기
@@ -163,6 +168,10 @@ export class CourseService {
     );
   }
 
+  getAllJoinUsers(): Observable<ApiResponse<CourseRegistrationResponseData[]>> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<ApiResponse<CourseRegistrationResponseData[]>>(this.courseApiUrl, { headers });
+  }
   //학습 주제 전체 조회
   // getAllDocName(courseId: number): Observable<ApiResponse<DocNameResponseData[]>> {
   //   const headers = this.getAuthHeaders();
